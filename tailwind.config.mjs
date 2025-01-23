@@ -6,11 +6,16 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+    extend: { 
+      keyframes: {
+      wag: {
+        '0%': { transform: 'translate(-60px,0px)', opacity: '0' },
+        '100%': { transform: 'translate(0px,0px)', opacity: '1' },
       },
+    },
+    animation: {
+      wag: 'wag .5s ease-in-out',
+    },
     },
   },
   plugins: [],

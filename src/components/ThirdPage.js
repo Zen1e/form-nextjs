@@ -58,8 +58,17 @@ const ThirdPage = (props) => {
         if (file) {
             const fileURL = URL.createObjectURL(file); // Create a URL for the file
             setPath(fileURL);
+            console.log(fileURL);
+            
         }
     }
+
+    const enterKey = (e) => {
+    
+        if(e.nativeEvent.key === 'Enter'){
+          nextButton();
+        }
+      }
 
     const backButton = () => {
         const data = {path: path, picError: picError, birth: birthData, ageError: ageError}
@@ -75,27 +84,30 @@ const ThirdPage = (props) => {
         if(path === './select.png'){
             setPicError(true);
         }else{count++;}
-        if(count===2)
-        setStep(4);
+        if(count===2){
+            localStorage.clear();
+            setStep(4);
+        }
     }
     
 
     return (
         <div className="bg-gray-100 w-[100vw] h-[100vh] flex justify-center items-center">
-          <div className="w-[480px] h-[655px] bg-white rounded-2xl">
+          <div className="w-[480px] h-[655px] bg-white rounded-2xl animate-wag">
             <div className="m-[32px] h-[591px] flex flex-col justify-between">
               <div className="w-[416px] h-[385px]">
                 <img src="./logo.svg"/>
                 <div className="text-[26px] font-bold my-[8px]">Join us!😎</div>
                 <div className="text-[18px] font-semibold text-gray-400 mb-[28px]">Please provide all current information accurately.</div>
                 <div className="text-[14px] font-semibold mb-[8px]">Date of birth <span className="text-red-600">*</span></div>
-                <input type='date' className="w-[416px] h-[45px] rounded-xl px-[12px] outline-none border mb-[0px]" onChange={dateChange} defaultValue={birthData}/>
+                <input type='date' className="w-[416px] h-[45px] rounded-xl px-[12px] outline-none border mb-[0px]" onChange={dateChange} defaultValue={birthData} onKeyDown={enterKey}/>
                 {ageError ? (<div className="mb-[20px] text-red-500 text-[13px]">Invalid birth date</div>) : (<div className="m-[20px]"></div>)}
                 <div className="text-[14px] font-semibold mb-[8px]">Profile picture <span className="text-red-600">*</span></div>
                 <div>
-                    <input type="file" accept="image/*" onChange={picture} className="absolute w-[416px] h-[200px] opacity-0"/>
+                    <input type="file" accept="image/*" onChange={picture} className="absolute w-[416px] h-[200px] opacity-0" onKeyDown={enterKey}/>
                     <div className="w-[416px] h-[200px] overflow-hidden rounded-xl border flex justify-center">
                         <img src={path} onError={()=>setPath("./select.png")}/>
+                        {path !== './select.png' && (<div className="w-[20px] h-[20px] rounded-full bg-black relative left-[90px] top-[8px] text-white" onClick={()=> {setPath('./select.png')}}><span className="pl-[4.5px] leading-[0px] relative top-[-2px] font-bold">X</span></div>)}
                     </div>
                 </div>
                 {picError ? (<div className="mb-[20px] text-red-500 text-[13px]">Please select profile picture</div>):(<div></div>)}

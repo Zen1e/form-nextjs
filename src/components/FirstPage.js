@@ -44,6 +44,13 @@ const FirstPage = (props) => {
     }
   };
 
+  const enterKey = (e) => {
+    
+    if(e.nativeEvent.key === 'Enter'){
+      checkValue();
+    }
+  }
+
   const checkValue = () => {
     let count = 0;
     if (firstName[0]) {
@@ -71,7 +78,7 @@ const FirstPage = (props) => {
 
   return (
     <div className="bg-gray-100 w-[100vw] h-[100vh] flex justify-center items-center">
-      <div className="w-[480px] h-[655px] bg-white rounded-2xl">
+      <div className="w-[480px] h-[655px] bg-white rounded-2xl  animate-wag">
         <div className="m-[32px] h-[591px] flex flex-col justify-between">
           <div className="w-[416px] h-[385px]">
             <img src="./logo.svg" />
@@ -91,6 +98,7 @@ const FirstPage = (props) => {
               placeholder="First name"
               value={firstName[0]}
               onChange={firstChange}
+              onKeyDown={enterKey}
             />
             {firstName[1] && (
               <div className="text-[13px] text-red-500 -mt-[10px] mb-[10px]">
@@ -109,6 +117,7 @@ const FirstPage = (props) => {
               placeholder="Last name"
               value={lastName[0]}
               onChange={lastChange}
+              onKeyDown={enterKey}
             />
             {lastName[1] && (
               <div className="text-[13px] text-red-500 -mt-[10px] mb-[10px]">
@@ -127,6 +136,7 @@ const FirstPage = (props) => {
               placeholder="Username"
               value={username[0]}
               onChange={userChange}
+              onKeyDown={enterKey}
             />
             {username[1] && (
               <div className="text-[13px] text-red-500 -mt-[10px] mb-[10px]">

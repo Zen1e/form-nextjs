@@ -53,6 +53,14 @@ const SecondPage = (props) => {
         setConfirm([e.target.value,false]);}
       }
 
+      const enterKey = (e) => {
+    
+        if(e.nativeEvent.key === 'Enter'){
+          nextButton();
+        }
+      }
+    
+
       const backButton = () => {
         const data = {email: email, number: number, password: password, confirm: confirm};
         const dataString = JSON.stringify(data);
@@ -94,7 +102,7 @@ const SecondPage = (props) => {
 
     return (
         <div className="bg-gray-100 w-[100vw] h-[100vh] flex justify-center items-center">
-          <div className="w-[480px] min-h-[655px] bg-white rounded-2xl">
+          <div className="w-[480px] min-h-[655px] bg-white rounded-2xl animate-wag">
             <div className="m-[32px] h-fit flex flex-col gap-[50px]">
               <div className="w-[416px] h-fit">
                 <img src="./logo.svg"/>
@@ -102,19 +110,19 @@ const SecondPage = (props) => {
                 <div className="text-[18px] font-semibold text-gray-400 mb-[28px]">Please provide all current information accurately.</div>
 
                 <div className="text-[14px] font-semibold mb-[8px]">Email <span className="text-red-600">*</span></div>
-                <input value={email[0]} className={!email[1] ? ("w-[416px] h-[44px] p-[12px] border border-gray-300 rounded-[5px] outline-none mb-[12px] focus:border-blue-300"): ("w-[416px] h-[44px] p-[12px] border border-red-500 rounded-[5px] mb-[12px] outline-none")} placeholder="Email" onChange={emailChange}/>
+                <input value={email[0]} className={!email[1] ? ("w-[416px] h-[44px] p-[12px] border border-gray-300 rounded-[5px] outline-none mb-[12px] focus:border-blue-300"): ("w-[416px] h-[44px] p-[12px] border border-red-500 rounded-[5px] mb-[12px] outline-none")} placeholder="Email" onChange={emailChange} onKeyDown={enterKey}/>
                 {email[1] && <div className="text-[13px] text-red-500 -mt-[10px] mb-[10px]">Invalid email</div>}
 
                 <div className="text-[14px] font-semibold mb-[8px]">Phone number <span className="text-red-600">*</span></div>
-                <input value={number[0]} className={!number[1] ? ("w-[416px] h-[44px] p-[12px] border border-gray-300 rounded-[5px] outline-none mb-[12px] focus:border-blue-300"): ("w-[416px] h-[44px] p-[12px] border border-red-500 rounded-[5px] mb-[12px] outline-none")} placeholder="Phone number" onChange={numberChange}/>
+                <input value={number[0]} className={!number[1] ? ("w-[416px] h-[44px] p-[12px] border border-gray-300 rounded-[5px] outline-none mb-[12px] focus:border-blue-300"): ("w-[416px] h-[44px] p-[12px] border border-red-500 rounded-[5px] mb-[12px] outline-none")} placeholder="Phone number" onChange={numberChange} onKeyDown={enterKey}/>
                 {number[1] && <div className="text-[13px] text-red-500 -mt-[10px] mb-[10px]">Invalid phone number</div>}
                 
                 <div className="text-[14px] font-semibold mb-[8px]">Password <span className="text-red-600">*</span></div>
-                <input value={password[0]} type="password" className={!password[1] ? ("w-[416px] h-[44px] p-[12px] border border-gray-300 rounded-[5px] outline-none mb-[12px] focus:border-blue-300"): ("w-[416px] h-[44px] p-[12px] border border-red-500 rounded-[5px] mb-[12px] outline-none")} placeholder="Password" onChange={passwordChange}/>
+                <input value={password[0]} type="password" className={!password[1] ? ("w-[416px] h-[44px] p-[12px] border border-gray-300 rounded-[5px] outline-none mb-[12px] focus:border-blue-300"): ("w-[416px] h-[44px] p-[12px] border border-red-500 rounded-[5px] mb-[12px] outline-none")} placeholder="Password" onChange={passwordChange} onKeyDown={enterKey}/>
                 {password[1] && <div className="text-[13px] text-red-500 -mt-[10px] mb-[10px]">At least 8 character. Use letter and number.</div>}
                 
                 <div className="text-[14px] font-semibold mb-[8px]">Confirm password <span className="text-red-600">*</span></div>
-                <input value={confirm[0]} type="password" className={!confirm[1] ? ("w-[416px] h-[44px] p-[12px] border border-gray-300 rounded-[5px] outline-none mb-[12px] focus:border-blue-300"): ("w-[416px] h-[44px] p-[12px] border border-red-500 rounded-[5px] mb-[12px] outline-none")} placeholder="Type again" onChange={confirmChange}/>
+                <input value={confirm[0]} type="password" className={!confirm[1] ? ("w-[416px] h-[44px] p-[12px] border border-gray-300 rounded-[5px] outline-none mb-[12px] focus:border-blue-300"): ("w-[416px] h-[44px] p-[12px] border border-red-500 rounded-[5px] mb-[12px] outline-none")} placeholder="Type again" onChange={confirmChange} onKeyDown={enterKey}/>
                 {confirm[1] && <div className="text-[13px] text-red-500 -mt-[10px] mb-[10px]">Password doesn't match.</div>}
               </div>
 
