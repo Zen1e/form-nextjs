@@ -10,10 +10,11 @@ const SecondPage = (props) => {
   const [password, setPassword] = useState(["", false]);
   const [confirm, setConfirm] = useState(["", false]);
 
-  const data = localStorage.getItem("secondData");
+  if(typeof window !== 'undefined'){
+    const data = localStorage.getItem("secondData");}
 
   useEffect(() => {
-    if (data !== null) {
+    if (data !== null && typeof window !== 'undefined') {
       const dataObject = JSON.parse(data);
       setEmail(dataObject.email);
       setNumber(dataObject.number);
