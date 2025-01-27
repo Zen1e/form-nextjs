@@ -9,7 +9,7 @@ const FirstPage = (props) => {
   const [lastName, setLastName] = useState(["", false]);
   const [username, setUsername] = useState(["", false]);
 
-  if(typeof window !== 'undefined')
+  if(data !== null && typeof window !== 'undefined')
     {const data = localStorage.getItem('data');}
 
   useEffect(()=>{

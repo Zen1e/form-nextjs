@@ -10,7 +10,7 @@ const SecondPage = (props) => {
   const [password, setPassword] = useState(["", false]);
   const [confirm, setConfirm] = useState(["", false]);
 
-  if(typeof window !== 'undefined'){
+  if(data !== null && typeof window !== 'undefined'){
     const data = localStorage.getItem("secondData");}
 
   useEffect(() => {

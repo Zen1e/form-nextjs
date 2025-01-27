@@ -13,7 +13,7 @@ const ThirdPage = (props) => {
   const [picError, setPicError] = useState(false);
   const [birthData, setBirthData] = useState(null);
 
-  if(typeof window !== 'undefined'){
+  if(data !== null && typeof window !== 'undefined'){
     const data = localStorage.getItem("thirdData");}
 
   useEffect(() => {
